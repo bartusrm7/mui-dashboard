@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 const db = mysql.createConnection({
 	host: "localhost",
 	user: "root",
-	database: "mui-dashboard",
+	database: "mui_dashboard",
 	port: 3306,
 });
 
