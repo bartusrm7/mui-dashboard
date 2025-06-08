@@ -36,11 +36,12 @@ router.post("/login", async (req, res) => {
 		const checkIsUserExistsQuery = `SELECT * FROM userData WHERE userEmail = ?`;
 		db.query(checkIsUserExistsQuery, [userEmail], async (err, data) => {
 			if (err) return res.status(500).json({ error: "Interval server error" });
-			if (data.length === 0) return res.status(404).json({ error: "User with this email is not found" });
+			if (data.length === 0)
+				return res.status(404).json({ error: "Użytkownik z tym adresem e-mail nie został znaleziony." });
 
 			const user = data[0];
 			const isPasswordValid = await bcrypt.compare(userPassword, user.userPassword);
-			if (!isPasswordValid) return res.status(401).json({ error: "Password is incorrect" });
+			if (!isPasswordValid) return res.status(401).json({ error: "Hasło jest nieprawidłowe" });
 
 			const accessToken = jwt.sign({ userEmail }, process.env.ACCESS_TOKEN_SECRET, {
 				expiresIn: "15m",

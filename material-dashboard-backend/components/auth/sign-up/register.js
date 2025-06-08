@@ -16,7 +16,7 @@ router.post("/register", async (req, res) => {
 		const checkIsUserExistsQuery = `SELECT * FROM userData WHERE userEmail = ?`;
 		db.query(checkIsUserExistsQuery, [userEmail], (err, data) => {
 			if (err) return res.status(500).json({ error: "Internal server error" });
-			if (data.length > 0) return res.status(409).json({ error: "User with this email is already exists" });
+			if (data.length > 0) return res.status(409).json({ error: "Użytkownik z tym adresem e-mail już istnieje" });
 
 			const hashSalt = bcrypt.genSaltSync(8);
 			const hashedPassword = bcrypt.hashSync(userPassword, hashSalt);
