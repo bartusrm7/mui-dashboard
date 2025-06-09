@@ -4,11 +4,14 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const PORT = 3001;
 
+// USER ROUTES
 const registerRouter = require("./components/auth/sign-up/register");
 const loginRouter = require("./components/auth/sign-in/login");
 const logoutRouter = require("./components/auth/logout/logout");
-// const authRouter = require("./components/auth/authUser");
 const refreshTokenRouter = require("./components/tokens/refreshToken");
+
+// API ROUTES
+const fuelPricesRouter = require("./components/features/online");
 
 app.use(express.json());
 app.use(
@@ -19,11 +22,14 @@ app.use(
 );
 app.use(cookieParser());
 
+// USER DATA
 app.use("/", registerRouter);
 app.use("/", loginRouter);
 app.use("/", logoutRouter);
-// app.use("/", authRouter);
 app.use("/", refreshTokenRouter);
+
+// GET API DATA
+app.use("/", fuelPricesRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}.`);
