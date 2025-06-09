@@ -6,8 +6,9 @@ const PORT = 3001;
 
 const registerRouter = require("./components/auth/sign-up/register");
 const loginRouter = require("./components/auth/sign-in/login");
-// const logoutRouter = require("./components/auth/logout/logout");
+const logoutRouter = require("./components/auth/logout/logout");
 // const authRouter = require("./components/auth/authUser");
+const refreshTokenRouter = require("./components/tokens/refreshToken");
 
 app.use(express.json());
 app.use(
@@ -20,8 +21,9 @@ app.use(cookieParser());
 
 app.use("/", registerRouter);
 app.use("/", loginRouter);
-// app.use("/", logoutRouter);
+app.use("/", logoutRouter);
 // app.use("/", authRouter);
+app.use("/", refreshTokenRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}.`);
