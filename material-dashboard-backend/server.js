@@ -12,6 +12,7 @@ const refreshTokenRouter = require("./components/tokens/refreshToken");
 
 // API ROUTES
 const fuelPricesRouter = require("./components/features/online");
+const quotesMarketDataRouter = require("./components/features/quotesMarketData");
 
 app.use(express.json());
 app.use(
@@ -30,6 +31,7 @@ app.use("/", refreshTokenRouter);
 
 // GET API DATA
 app.use("/", fuelPricesRouter);
+app.use("/", quotesMarketDataRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}.`);

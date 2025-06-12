@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 
@@ -21,13 +20,21 @@ router.get("/fuel-data", async (req, res) => {
 		const rpcPBPrice = externalApi[0].find(item => item.rpr_symbol === "BENZYNA 95");
 		const rpcHVOPrice = externalApi[0].find(item => item.rpr_symbol === "HVO");
 
-		const formattedDate = rcpDate.rcp_data.split(" ")[0];
+		const formattedDate = rcpDate.rcp_data.split(" ")[0].split("-").reverse().join(".");
+
+		const flatExternalApi = externalApi.flat();
+		const rpcONPriceLast15Days = flatExternalApi.filter(item => item.rpr_symbol === "ON B7 2011").slice(0, 15);
+		const rpcPBPriceLast15Days = flatExternalApi.filter(item => item.rpr_symbol === "BENZYNA 95").slice(0, 15);
+		const rpcHVOPriceLast15Days = flatExternalApi.filter(item => item.rpr_symbol === "HVO").slice(0, 15);
 
 		res.status(200).json({
 			dieselPrice: rpcONPrice.rcp_cena_l,
 			pb95Price: rpcPBPrice.rcp_cena_l,
 			hvoPrice: rpcHVOPrice.rcp_cena_l,
 			date: formattedDate,
+			last15DaysONPrice: rpcONPriceLast15Days,
+			last15DaysPB95Price: rpcPBPriceLast15Days,
+			last15DaysHVOPrice: rpcHVOPriceLast15Days,
 		});
 	} catch (error) {
 		console.error("Error during getting fuel data:", error);
