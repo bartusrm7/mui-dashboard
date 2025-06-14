@@ -28,9 +28,9 @@ router.get("/fuel-data", async (req, res) => {
 		const rpcHVOPriceLast15Days = flatExternalApi.filter(item => item.rpr_symbol === "HVO").slice(0, 15);
 
 		res.status(200).json({
-			dieselPrice: rpcONPrice.rcp_cena_l,
-			pb95Price: rpcPBPrice.rcp_cena_l,
-			hvoPrice: rpcHVOPrice.rcp_cena_l,
+			dieselPrice: rpcONPrice?.rcp_cena_l,
+			pb95Price: rpcPBPrice?.rcp_cena_l,
+			hvoPrice: rpcHVOPrice?.rcp_cena_l,
 			date: formattedDate,
 			last15DaysONPrice: rpcONPriceLast15Days,
 			last15DaysPB95Price: rpcPBPriceLast15Days,
