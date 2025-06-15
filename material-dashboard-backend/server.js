@@ -14,7 +14,9 @@ const refreshTokenRouter = require("./components/tokens/refreshToken");
 const fuelPricesRouter = require("./components/features/online");
 const quotesMarketDataRouter = require("./components/features/quotesMarketData");
 
+// VEHICLES API ROUTES
 const authGpsApiRouter = require("./components/gpsAPI/authGpsApi");
+const vehiclesApiRouter = require("./components/gpsAPI/vehiclesApi");
 
 app.use(express.json());
 app.use(
@@ -35,7 +37,9 @@ app.use("/", refreshTokenRouter);
 app.use("/", fuelPricesRouter);
 app.use("/", quotesMarketDataRouter);
 
+// GET VEHICLES API DATA
 app.use("/", authGpsApiRouter);
+app.use("/", vehiclesApiRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server running at http://localhost:${PORT}.`);
