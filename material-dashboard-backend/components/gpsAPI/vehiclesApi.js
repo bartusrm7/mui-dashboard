@@ -68,7 +68,7 @@ router.get("/vehicle-date-localization", async (req, res) => {
 		const authHeader = Buffer.from(`${userNameGPSAuth}:${userPasswordGPSAuth}`).toString("base64");
 
 		const response = await fetch(
-			`https://fleetapi-pl.cartrack.com/rest/vehicles/${registration}/events?start_timestamp=${startDate}&end_timestamp=${endDate}`,
+			`https://fleetapi-pl.cartrack.com/rest/trips/${registration}?start_timestamp=${start_timestamp}&end_timestamp=${end_timestamp}`,
 			{
 				method: "GET",
 				headers: {
@@ -83,7 +83,6 @@ router.get("/vehicle-date-localization", async (req, res) => {
 			throw new Error(`API error ${response.status}`);
 		}
 		const data = await response.json();
-		console.log(data.data[0]);
 		return res.status(200).json(data.data[0]);
 	} catch (error) {
 		console.error("Error in vehicle localization by date in api route", error);
