@@ -7,3 +7,9 @@ Backend odpalamy za pomocą komendy:
 ```
 npm run devStart
 ```
+
+Technologie:
+- React
+- JavaScript
+- MySQL
+- NodeJS
