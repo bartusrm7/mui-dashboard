@@ -1,0 +1,3 @@
+[submodule "material-dashboard-frontend"]
+	path = material-dashboard-frontend
+	url = git@github.com:bartusrm7/material-dashboard-react.git
