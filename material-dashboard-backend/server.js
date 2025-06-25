@@ -43,5 +43,5 @@ app.use("/", authGpsApiRouter);
 app.use("/", vehiclesApiRouter);
 
 app.listen(PORT, () => {
-	console.log(`Server running at https://mui-dashboard-backend-t9uw.onrender.com.`);
+	console.log(`Server running at https://mui-dashboard-backend-t9uw.onrender.com`);
 });
