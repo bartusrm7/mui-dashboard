@@ -27,14 +27,6 @@ app.use(
 	})
 );
 app.use(cookieParser());
-app.get("/check-db", (req, res) => {
-	db.query("SHOW DATABASES", (err, results) => {
-		if (err) {
-			return res.status(500).json({ error: err.message });
-		}
-		res.json(results);
-	});
-});
 
 // USER DATA
 app.use("/", registerRouter);
@@ -51,5 +43,5 @@ app.use("/", authGpsApiRouter);
 app.use("/", vehiclesApiRouter);
 
 app.listen(PORT, () => {
-	console.log(`Server running at https://material-dashboard-disr.onrender.com.`);
+	console.log(`Server running at https://mui-dashboard-backend-t9uw.onrender.com.`);
 });
