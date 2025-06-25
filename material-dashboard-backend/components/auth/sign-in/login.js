@@ -52,19 +52,13 @@ router.post("/login", async (req, res) => {
 
 			res.cookie("accessToken", accessToken, {
 				maxAge: 15 * 60 * 1000,
-				secure: process.env.NODE_ENV === "production",
-				httpOnly: false,
-				sameSite: "Lax",
+				secure: true,
+				httpOnly: true,
+				sameSite: "None",
 			});
 
 			res.cookie("refreshToken", refreshToken, {
 				maxAge: 30 * 24 * 60 * 60 * 1000,
-				secure: process.env.NODE_ENV === "production",
-				httpOnly: false,
-				sameSite: "Lax",
-			});
-			res.cookie("refreshToken", refreshToken, {
-				maxAge: 30 * 24 * 3600 * 1000,
 				secure: true,
 				httpOnly: true,
 				sameSite: "None",
