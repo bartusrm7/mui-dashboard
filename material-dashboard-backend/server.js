@@ -1,8 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // USER ROUTES
 const registerRouter = require("./components/auth/sign-up/register");
