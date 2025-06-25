@@ -1,7 +1,4 @@
 const mysql = require("mysql2");
-console.log("DB_HOST:", process.env.DB_HOST);
-console.log("DB_USER:", process.env.DB_USER);
-console.log("DB_NAME:", process.env.DB_NAME);
 
 const db = mysql.createConnection({
 	host: process.env.DB_HOST || "localhost",
@@ -17,9 +14,6 @@ db.query(`CREATE TABLE IF NOT EXISTS userData (
 	userEmail VARCHAR(100) NOT NULL,
 	userPassword VARCHAR (100) NOT NULL
 )`);
-console.log("DB_HOST:", process.env.DB_HOST);
-console.log("DB_USER:", process.env.DB_USER);
-console.log("DB_NAME:", process.env.DB_NAME);
 
 db.connect(error => {
 	if (error) {
