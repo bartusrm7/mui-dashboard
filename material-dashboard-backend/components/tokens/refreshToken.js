@@ -6,7 +6,8 @@ const router = express.Router();
 router.post("/refresh-token", async (req, res) => {
 	try {
 		const refreshToken = req.cookies.refreshToken;
-		if (!refreshToken) return res.status(401).json({ error: "Invalid refresh token" });
+		console.log(req.cookies.refreshToken);
+		// if (!refreshToken) return res.status(401).json({ error: "Invalid refresh token" });
 
 		jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
 			if (err) return res.status(403).json({ error: "Invalid token!" });
