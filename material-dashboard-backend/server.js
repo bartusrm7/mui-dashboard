@@ -22,7 +22,7 @@ const vehiclesApiRouter = require("./components/gpsAPI/vehiclesApi");
 app.use(express.json());
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: "https://material-dashboard-disr.onrender.com",
 		credentials: true,
 	})
 );
@@ -51,5 +51,5 @@ app.use("/", authGpsApiRouter);
 app.use("/", vehiclesApiRouter);
 
 app.listen(PORT, () => {
-	console.log(`Server running at http://localhost:${PORT}.`);
+	console.log(`Server running at https://material-dashboard-disr.onrender.com.`);
 });
