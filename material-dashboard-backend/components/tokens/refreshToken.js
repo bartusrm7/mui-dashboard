@@ -6,8 +6,7 @@ const router = express.Router();
 router.post("/refresh-token", async (req, res) => {
 	try {
 		const refreshToken = req.cookies.refreshToken;
-		console.log(req.cookies.refreshToken);
-		// if (!refreshToken) return res.status(401).json({ error: "Invalid refresh token" });
+		if (!refreshToken) return res.status(401).json({ error: "Invalid refresh token" });
 
 		jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
 			if (err) return res.status(403).json({ error: "Invalid token!" });
@@ -17,9 +16,9 @@ router.post("/refresh-token", async (req, res) => {
 
 			res.cookie("accessToken", accessToken, {
 				maxAge: 15 * 60 * 1000,
-				secure: true,
-				httpOnly: true,
-				sameSite: "None",
+				secure: process.env.NODE_ENV === "production",
+				httpOnly: false,
+				sameSite: "Lax",
 			});
 
 			return res.status(200).json({ message: "Access token provided successfully!" });
