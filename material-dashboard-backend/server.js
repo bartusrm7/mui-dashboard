@@ -27,6 +27,14 @@ app.use(
 	})
 );
 app.use(cookieParser());
+app.get("/check-db", (req, res) => {
+	db.query("SHOW DATABASES", (err, results) => {
+		if (err) {
+			return res.status(500).json({ error: err.message });
+		}
+		res.json(results);
+	});
+});
 
 // USER DATA
 app.use("/", registerRouter);
