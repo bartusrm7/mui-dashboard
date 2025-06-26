@@ -60,7 +60,7 @@ router.post("/login", async (req, res) => {
 				httpOnly: false,
 			});
 
-			return res.status(200).json({ message: "User logged successfull" });
+			return res.status(200).json({ message: "User logged successfull", accessToken });
 		});
 	} catch (error) {
 		console.error("Error in login route", error);
