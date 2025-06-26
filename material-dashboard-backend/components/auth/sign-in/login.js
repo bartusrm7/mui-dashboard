@@ -7,7 +7,9 @@ const { loginValidation } = require("./loginValidation");
 const router = express.Router();
 
 function authenticateToken(req, res, next) {
-	const token = req.cookies.accessToken;
+	const authHeader = req.headers["authorization"];
+	const token = authHeader && authHeader.split(" ")[1];
+
 	if (!token) return res.status(401).json({ error: "Token is not provide" });
 
 	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
