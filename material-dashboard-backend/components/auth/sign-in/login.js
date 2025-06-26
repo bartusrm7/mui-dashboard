@@ -52,17 +52,15 @@ router.post("/login", async (req, res) => {
 			res.cookie("accessToken", accessToken, {
 				maxAge: 15 * 60 * 1000,
 				secure: process.env.NODE_ENV === "production",
-				httpOnly: false,
-				sameSite: "Lax",
+				httpOnly: true,
 			});
 			res.cookie("refreshToken", refreshToken, {
 				maxAge: 30 * 24 * 60 * 60 * 1000,
 				secure: process.env.NODE_ENV === "production",
-				httpOnly: false,
-				sameSite: "Lax",
+				httpOnly: true,
 			});
 
-			return res.status(200).json({ message: "User logged successfull", accessToken });
+			return res.status(200).json({ message: "User logged successfull" });
 		});
 	} catch (error) {
 		console.error("Error in login route", error);
