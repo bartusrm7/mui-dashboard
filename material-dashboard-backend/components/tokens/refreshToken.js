@@ -16,9 +16,9 @@ router.post("/refresh-token", async (req, res) => {
 
 			res.cookie("accessToken", accessToken, {
 				maxAge: 15 * 60 * 1000,
-				secure: true,
 				httpOnly: true,
-				sameSite: "None",
+				secure: process.env.NODE_ENV === "production",
+				sameSite: "Strict",
 			});
 
 			return res.status(200).json({ message: "Access token provided successfully!" });
