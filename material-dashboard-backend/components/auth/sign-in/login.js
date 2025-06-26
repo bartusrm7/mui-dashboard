@@ -11,7 +11,6 @@ function authenticateToken(req, res, next) {
 	const token = authHeader && authHeader.split(" ")[1];
 
 	if (!token) return res.status(401).json({ error: "Token is not provide" });
-	console.log(token);
 	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
 		if (err) return res.status(403).json({ error: "Invalid token" });
 
@@ -63,9 +62,6 @@ router.post("/login", async (req, res) => {
 				secure: process.env.NODE_ENV === "production",
 				sameSite: "Strict",
 			});
-			console.log(accessToken);
-			console.log(refreshToken);
-			console.log(user);
 			return res.status(200).json({ message: "User logged successfull" });
 		});
 	} catch (error) {
