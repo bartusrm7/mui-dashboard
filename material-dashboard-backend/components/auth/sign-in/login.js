@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
 				secure: process.env.NODE_ENV === "production",
 				sameSite: "Strict",
 			});
-			return res.status(200).json({ message: "User logged successfull" });
+			return res.status(200).json({ message: "User logged successfull", accessToken });
 		});
 	} catch (error) {
 		console.error("Error in login route", error);
