@@ -112,7 +112,7 @@ router.get("/vehicles-curious-data", async (req, res) => {
 		const vehiclesCuriousData = data.data.map(vehicleData => ({
 			registration: vehicleData.registration,
 			odometer: vehicleData.odometer,
-			road_speed: vehicleData.road_speed,
+			clock: vehicleData.clock,
 		}));
 		return res.status(200).json(vehiclesCuriousData);
 	} catch (error) {
